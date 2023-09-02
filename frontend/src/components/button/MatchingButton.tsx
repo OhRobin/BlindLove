@@ -1,6 +1,6 @@
 function MatchingButton() {
     return (
-        <div className="mt-4 mx-auto rounded-lg w-80 h-10 bg-neutral-500 text-center left-8 text-lg text-white p-1">
+        <div className="mt-4 mx-auto rounded-lg w-80 h-12 bg-gray-300 text-center left-8 text-lg text-white p-2">
             {"Matching"}
         </div>
     )

@@ -7,7 +7,7 @@ function Home() {
     return(
         <>
             <ZkMask />
-            <div className="mt-20 mb-16 font-bold text-3xl mx-9 top-0 left-0">
+            <div className="mt-20 mb-16 mx-9 top-0 left-0">
                 <h1 className="text-center">To generate a DID<br />Get your photo voted on</h1>
             </div>
             <UploadPhotoFrame />
