@@ -8,12 +8,12 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  apiKey: import.meta.env.VITE_FIREBASE_KEY,
   authDomain: "jellybelly-8ceef.firebaseapp.com",
   projectId: "jellybelly-8ceef",
   storageBucket: "jellybelly-8ceef.appspot.com",
   messagingSenderId: "742199351043",
-  appId: process.env.REACT_APP_FIREBASE_ID,
+  appId: import.meta.env.VITE_FIREBASE_ID,
 };
 
 // Initialize Firebase
@@ -24,7 +24,7 @@ export const storage = getStorage(app);
 export const uploadImg = async (image: File, walletAddress: `0x${string}`) => {
   if (!image) return;
 
-  const imgRef = ref(storage, `${walletAddress}/${image.name}`);
+  const imgRef = ref(storage, `images/${walletAddress}`);
   const snapshot = await uploadBytes(imgRef, image);
   const url = await getDownloadURL(snapshot.ref);
 
