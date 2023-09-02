@@ -2,7 +2,7 @@ import BackArrowIcon from '../../assets/BackIcon.svg';
 
 function BackButton() {
     return(
-        <div className="absolute rounded-full border-2 border-gray-200 w-10 h-10 p-2">
+        <div className="absolute rounded-full border border-gray-200 w-10 h-10 p-2">
             <img src={BackArrowIcon}></img>
         </div>
     )
