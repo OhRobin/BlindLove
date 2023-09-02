@@ -19,7 +19,12 @@ function App() {
 }
 
 const AppLayout = () => {
-  return <Outlet />;
+  return (
+    <>
+      <nav className="text-primary-red bg-secondary-blue"><h1>Hello JellyHelly</h1></nav>
+      <Outlet />
+    </>
+  );
 };
 
 export default App;
