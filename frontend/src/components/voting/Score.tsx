@@ -18,22 +18,25 @@ type ScoreProps = {
 
 const Score: React.FC<ScoreProps> = (props: ScoreProps) => {
   return (
-    <ul className="flex items-center justify-center gap-4">
-      {new Array(5).fill(0).map((_, idx) => {
-        return (
-          <li
-            key={`score-${idx}`}
-            onClick={() => props.setScore(idx + 1)}
-            className={cls(
-              props.score >= idx + 1 ? "text-gray-300" : "text-gray-100",
-              "cursor-pointer border-none outline-none",
-            )}
-          >
-            <Star />
-          </li>
-        );
-      })}
-    </ul>
+    <div className="flex flex-col gap-2">
+      <p className="text-gray-200">score</p>
+      <ul className="flex items-center justify-center gap-4">
+        {new Array(5).fill(0).map((_, idx) => {
+          return (
+            <li
+              key={`score-${idx}`}
+              onClick={() => props.setScore(idx + 1)}
+              className={cls(
+                props.score >= idx + 1 ? "text-gray-300" : "text-gray-100",
+                "cursor-pointer border-none outline-none",
+              )}
+            >
+              <Star />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

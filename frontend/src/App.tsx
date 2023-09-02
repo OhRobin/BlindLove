@@ -24,12 +24,9 @@ function App() {
 
 const AppLayout = () => {
   return (
-    <>
-      <nav className="text-primary-red bg-secondary-blue">
-        <h1>Hello JellyHelly</h1>
-      </nav>
+    <main className="mx-auto max-w-[313px]">
       <Outlet />
-    </>
+    </main>
   );
 };
 
