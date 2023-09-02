@@ -2,6 +2,7 @@ import { RecoilRoot } from "recoil";
 import { Routes, Route, Outlet, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Receivevotes from "./pages/Receivevotes";
+import Voting from "./pages/Voting";
 
 function App() {
   return (
