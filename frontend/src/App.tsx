@@ -11,9 +11,7 @@ function App() {
           <Routes>
             <Route path="/" element={<AppLayout />}>
               <Route index element={<Home />} />
-            </Route>
-            <Route path="/recvotes" element={<AppLayout />}>
-              <Route index element={<Receivevotes />} />
+              <Route path="/recvotes" element={<Receivevotes />} />
             </Route>
           </Routes>
         </BrowserRouter>
@@ -25,7 +23,9 @@ function App() {
 const AppLayout = () => {
   return (
     <>
-      <nav className="text-primary-red bg-secondary-blue"><h1>Hello JellyHelly</h1></nav>
+      <nav className="text-primary-red bg-secondary-blue">
+        <h1>Hello JellyHelly</h1>
+      </nav>
       <Outlet />
     </>
   );
