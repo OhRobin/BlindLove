@@ -22,11 +22,9 @@ export const storage = getStorage(app);
 
 // Functions
 export const uploadImg = async (image: File, walletAddress: `0x${string}`) => {
-  if (!image) return;
-
   const imgRef = ref(storage, `images/${walletAddress}`);
   const snapshot = await uploadBytes(imgRef, image);
-  const url = await getDownloadURL(snapshot.ref);
 
-  return url;
+  console.log(snapshot);
+  return await getDownloadURL(snapshot.ref);
 };
