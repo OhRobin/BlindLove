@@ -1,14 +1,25 @@
 import { RecoilRoot } from "recoil";
+import { Routes, Route, Outlet, BrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       <RecoilRoot>
-        <Home />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<AppLayout />}>
+              <Route index element={<Home />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       </RecoilRoot>
     </>
   );
 }
+
+const AppLayout = () => {
+  return <Outlet />;
+};
 
 export default App;
