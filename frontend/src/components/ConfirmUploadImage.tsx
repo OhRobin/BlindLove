@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { uploadImg } from "../firebase";
+
 const CheckIcon = () => {
   return (
     <svg width="40" height="37" viewBox="0 0 40 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,11 +18,116 @@ const CheckIcon = () => {
   );
 };
 
-const ConfirmUploadImage = () => {
+const Spinner = () => {
   return (
-    <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black opacity-90">
-      <div className="flex flex-col items-center justify-center rounded-[20px] bg-white w-[313px] h-[420px]">
+    <svg
+      className="text-primary-red h-10 w-10 animate-spin"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      ></circle>
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      ></path>
+    </svg>
+  );
+};
+
+type Props = {
+  imgSrc: File;
+  setImgSrc: React.Dispatch<React.SetStateAction<File | null>>;
+};
+
+const ConfirmUploadImage = ({ imgSrc, setImgSrc }: Props) => {
+  const [preview, setPreview] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const onClickUploadImage = async () => {
+    if (!imgSrc) {
+      console.log("no img");
+      return;
+    }
+
+    if (loading) {
+      console.log("loading");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      console.log("call");
+      await uploadImg(imgSrc, "0xEA644e61a026c4f7c9D8499Ea772cA6e53E8A1a6");
+
+      alert("사진 등록에 성공했습니다")
+
+      setImgSrc(null);
+    } catch (error) {
+      console.log(error);
+      alert("에러 발생");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    // 스크롤 방지
+    document.body.style.overflow = "hidden";
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setPreview(reader.result as string);
+    };
+
+    reader.readAsDataURL(imgSrc);
+    // 컴포넌트가 언마운트될 때 스크롤을 원상태로 복구
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [imgSrc]);
+
+  return (
+    <div className="fixed left-0 top-0 z-10 flex h-full w-full items-center justify-center bg-black/70">
+      <div className="w-custom relative flex flex-col items-center rounded-[20px] bg-white py-[34px]">
+        {loading && (
+          <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2">
+            <Spinner />
+          </div>
+        )}
+
         <CheckIcon />
+        <h1 className="mt-[17px]">Upload a photo?</h1>
+        {preview && (
+          <img
+            width="160"
+            height="160"
+            src={preview}
+            className="mt-4 h-[160px] w-[160px] rounded-lg"
+          />
+        )}
+        <div className="mt-[30px] flex gap-4">
+          <button
+            className="h-[56px] w-[130px] rounded-lg border-2 border-gray-200 text-gray-200"
+            onClick={loading ? undefined : () => setImgSrc(null)}
+          >
+            Cancel
+          </button>
+          <button
+            className="bg-primary-red h-[56px] w-[130px] rounded-lg  text-white"
+            onClick={loading ? undefined : onClickUploadImage}
+          >
+            Confirm
+          </button>
+        </div>
       </div>
     </div>
   );
