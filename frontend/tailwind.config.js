@@ -12,6 +12,7 @@ export default {
       "primary-pink": "#EE2A7B",
       "secondary-blue": "#07B1EF",
       "secondary-green": "#01DF85",
+      "white": "#FFFFFF",
       gray: {
         100: "#F5F5F5",
         200: "#A2A2A2",
