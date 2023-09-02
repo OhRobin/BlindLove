@@ -1,6 +1,5 @@
-import "./App.css"
-import { RecoilRoot } from "recoil"
-import Home from "./pages/Home"
+import { RecoilRoot } from "recoil";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -9,7 +8,7 @@ function App() {
         <Home />
       </RecoilRoot>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
